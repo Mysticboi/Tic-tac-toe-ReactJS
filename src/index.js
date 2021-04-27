@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 import './index.css';
 
 
@@ -13,6 +14,12 @@ function Square(props){
         </button>
       );
 }
+
+Square.propTypes={
+  name: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
+  value: PropTypes.any  // Value can be null
+};
   
   class Board extends React.Component {
 
@@ -69,6 +76,12 @@ function Square(props){
     }
   }
 
+  Board.propTypes={
+    winning: PropTypes.array.isRequired,
+    squares: PropTypes.array.isRequired,
+    onClick: PropTypes.func.isRequired
+  };
+
   
   class Game extends React.Component {
     constructor(props){
@@ -107,7 +120,6 @@ function Square(props){
           this.setState({
             winning: lines
           });
-          console.log(lines);
         }
         if(!squares.includes(null) && !result[0]){
           alert("draw");
